@@ -1,15 +1,13 @@
 package com.example.echo.myfirstapp;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
 //                    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 //                    startActivityForResult(intent, 1);
 
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+//                    startActivity(intent);
+
+                    SecondActivity.actionStart(MainActivity.this, "data1", "data2");
                 }
             });
         }
