@@ -21,13 +21,36 @@ public class FruitAdapter extends ArrayAdapter<Fruit>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Fruit fruit = getItem(position);
-        View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
-        TextView fruitId = (TextView) view.findViewById(R.id.fruit_imageid);
-        TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);
+//        View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
+        View view;
 
-        fruitId.setText(fruit.getImgId());
-        fruitName.setText(fruit.getName());
+        ViewHolder viewHolder;
+
+        if (convertView == null) {
+            view = LayoutInflater.from(getContext()).inflate(resourceId, null);
+
+            viewHolder = new ViewHolder();
+            viewHolder.fruitId = (TextView) view.findViewById(R.id.fruit_imageid);
+            viewHolder.fruitName = (TextView) view.findViewById(R.id.fruit_name);
+            view.setTag(viewHolder);
+        }else {
+            view = convertView;
+            viewHolder = (ViewHolder) view.getTag();
+        }
+        viewHolder.fruitId.setText(fruit.getImgId());
+        viewHolder.fruitName.setText(fruit.getName());
+
+//        TextView fruitId = (TextView) view.findViewById(R.id.fruit_imageid);
+//        TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);
+//
+//        fruitId.setText(fruit.getImgId());
+//        fruitName.setText(fruit.getName());
 
         return view;
+    }
+
+    class ViewHolder {
+        TextView fruitId;
+        TextView fruitName;
     }
 }
