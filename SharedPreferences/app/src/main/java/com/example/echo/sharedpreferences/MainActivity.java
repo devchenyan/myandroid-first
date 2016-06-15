@@ -9,6 +9,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button saveData;
+    private Button restoreData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,17 @@ public class MainActivity extends AppCompatActivity {
                 editor.putBoolean("married", false);
 
                 editor.apply();
+            }
+        });
+
+        restoreData = (Button) findViewById(R.id.restore_data);
+        restoreData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = getSharedPreferences("data", MODE_PRIVATE);
+                String name = preferences.getString("name", "");
+                int age = preferences.getInt("age", 0);
+                boolean married = preferences.getBoolean("married", false);
             }
         });
     }
